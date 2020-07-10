@@ -1,20 +1,25 @@
 //Define first player
-let currentPlayer = 'X';
+let currentPlayer = 'x';
 
 //Target gameboard
 const gameBoardEl = document.querySelector('.gameboard');
 //Add event listener to gameboard
 gameBoardEl.addEventListener('click', boxClickHandler);
-gameBoardEl.addEventListener('onfocus', changeBackground)
+
 //Target banner
 const bannerEl = document.querySelector('.banner');
 bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
 
-//hover change color
-function changeBackground(event) {
-    if (event.target.className === 'box') {
-        style.changeBackground = 'grey';
-    }
+//Target button
+const buttonEl = document.querySelector('.button');
+buttonEl.addEventListener('click', restart);
+
+//Define restart handler
+function restart() {
+	const boxes = document.querySelectorAll('.box');
+	boxes.forEach((box) => {
+		box.innerText = '';
+	});
 }
 
 //Define gameboard handler
@@ -24,7 +29,7 @@ function boxClickHandler(event) {
 			event.target.innerText = currentPlayer;
 			switchPlayers();
 			bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
-            checkWin();
+			checkWin();
 		}
 	}
 }
@@ -99,5 +104,5 @@ function switchPlayers() {
 	// } else {
 	// 	currentPlayer = 'X';
 	// }
-	currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+	currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
 }

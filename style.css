@@ -1,8 +1,9 @@
 body {
-	font-family: Helvetica;
+	font-family: 'Oswald';
 	text-align: center;
 }
 .gameboard {
+	/*define the gameboard elements as a grid*/
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	height: 70vmin;
@@ -11,10 +12,28 @@ body {
 }
 
 .box {
+	/* Add a flex to each box, then justify content and align items */
 	border: 1px solid;
 	margin-bottom: -1px;
 	margin-right: -1px;
-    font-weight: bold;
-    a:hover ()
-    
+	font-weight: bold;
+	font-size: 1.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: calc(70vmin / 3);
+}
+.box:hover {
+	background-color: #eeeeee;
+}
+
+.button {
+	border: 0;
+	padding: 1.5%;
+	font-family: 'Raleway';
+	/* font-family: 'Oswald'; */
+	font-size: large;
+	/* font-weight: bold; */
+	color: white;
+	background-color: #aaaaaa;
 }
