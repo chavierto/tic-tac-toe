@@ -1,6 +1,7 @@
 body {
 	font-family: 'Oswald';
 	text-align: center;
+	background-color: #efefef;
 }
 .gameboard {
 	/*define the gameboard elements as a grid*/
@@ -24,7 +25,7 @@ body {
 	height: calc(70vmin / 3);
 }
 .box:hover {
-	background-color: #eeeeee;
+	background-color: #dddddd;
 }
 
 .button {
@@ -35,5 +36,5 @@ body {
 	font-size: large;
 	/* font-weight: bold; */
 	color: white;
-	background-color: #aaaaaa;
+	background-color: #999999;
 }

@@ -3,7 +3,9 @@
 A game in HTML, CSS and JS.
 
 ## User Stories
+
 ### MVP
+
 - As a player, I want my game to recognize three ticks in a row so that I know who won.
 - As a player, I would like to be informed when the game ends by win, tie or loss.
 - As a player I would like know whose turn it is so that I don't have to keep track.
