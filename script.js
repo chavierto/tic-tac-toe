@@ -47,7 +47,6 @@ function boxClickHandler(event) {
 				bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
 			}
 		}
-		if (gameOver) return;
 	}
 	if (currentGameCounter === 9) {
 		bannerEl.innerText = "It's a tie!";

@@ -23,6 +23,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	height: calc(70vmin / 3);
+	transition: 100ms;
 }
 .box:hover {
 	background-color: #dddddd;
@@ -37,6 +38,7 @@ body {
 	/* font-weight: bold; */
 	color: white;
 	background-color: #999999;
+	transition: 100ms;
 }
 
 .button:hover {
