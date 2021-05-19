@@ -1,6 +1,9 @@
 //Define first player
 let currentPlayer = 'x';
 let currentGameCounter = 0;
+let xPicks = [];
+let oPicks = [];
+let gameOver = false;
 
 //Target gameboard
 const gameBoardEl = document.querySelector('.gameboard');
@@ -19,6 +22,9 @@ buttonEl.addEventListener('click', restart);
 function restart() {
 	currentGameCounter = 0;
 	bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
+	xPicks = [];
+	oPicks = [];
+	gameOver = false;
 	const boxes = document.querySelectorAll('.box');
 	boxes.forEach((box) => {
 		box.innerText = '';
@@ -27,89 +33,48 @@ function restart() {
 
 //Define gameboard handler
 function boxClickHandler(event) {
-	if (event.target.className === 'box' && currentGameCounter < 9) {
+	if (!gameOver && event.target.className === 'box' && currentGameCounter < 9) {
 		if (event.target.innerText === '') {
 			event.target.innerText = currentPlayer;
-			switchPlayers();
+			currentPlayer === 'x'
+				? xPicks.push(parseInt(event.target.id))
+				: oPicks.push(parseInt(event.target.id));
+
 			currentGameCounter++;
-			bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
-			// checkWin();
+			checkWin();
+			if (!gameOver) {
+				switchPlayers();
+				bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
+			}
 		}
+		if (gameOver) return;
 	}
 	if (currentGameCounter === 9) {
 		bannerEl.innerText = "It's a tie!";
 	}
 }
 
-// function checkWin() {
-// 	if (
-// 		a1.innerText &&
-// 		a1.innerText === a2.innerText &&
-// 		a2.innerText === a3.innerText
-//     ) else if (
-//         b1.innerText &&
-// 		b1.innerText === b2.innerText &&
-// 		b2.innerText === b3.innerText
-//     ) else if (
-//         c1.innerText &&
-// 		c1.innerText === c2.innerText &&
-// 		c2.innerText === c3.innerText
-//     ) else if (
-//         a1.innerText &&
-//         a1.innerText === b1.innerText &&
-//         b1.innerText === c1.innerText
-//     ) else if (
-//         a2.innerText &&
-//         a2.innerText === b2.innerText &&
-//         b2.innerText === c2.innerText
-//     ) else if (
-//         a3.innerText &&
-//         a3.innerText === b3.innerText &&
-//         b3.innerText === c3.innerText
-//     ) else if (
-//         a1.innerText &&
-//         a1.innerText === b2.innerText &&
-//         b2.innerText === c3.innerText
-//     ) else if (
-//         a3.innerText &&
-//         a3.innerText === b2.innerText &&
-//         b2.innerText === c1.innerText
-//     )    {
-// 		bannerEl.innerText = `${currentPlayer}'s the winner!`;
-// 	}
-// }
-
-/*
-how do you win
-if (a1.innerText === a2.innerText && a2.innerText === a3.innerText) {
- console.log(`${currentPlater}'s the winner!)   
+function checkWin() {
+	currentPlayer === 'x' ? pickChecker(xPicks) : pickChecker(oPicks);
 }
 
-b1 b2 b3
-c1 c2 c3
-a1 b1 c1
-a2 b2 c2
-a3 b3 c3
-a1 b2 c3
-a3 b2 c1
-*/
+function pickChecker(arr) {
+	let matches =
+		(arr.includes(0) && arr.includes(1) && arr.includes(2)) ||
+		(arr.includes(3) && arr.includes(4) && arr.includes(5)) ||
+		(arr.includes(6) && arr.includes(7) && arr.includes(8)) ||
+		(arr.includes(0) && arr.includes(3) && arr.includes(6)) ||
+		(arr.includes(1) && arr.includes(4) && arr.includes(7)) ||
+		(arr.includes(2) && arr.includes(5) && arr.includes(8)) ||
+		(arr.includes(0) && arr.includes(4) && arr.includes(8)) ||
+		(arr.includes(2) && arr.includes(4) && arr.includes(6));
 
-const gamePlay = ['', '', '', '', '', '', '', '', ''];
-
-// if (event)
-// 	function checkWin() {
-// 		//checks for win condition
-// 	}
-
-// function checkTie() {
-// 	//checks if there is a tie
-// }
+	if (matches) {
+		bannerEl.innerText = `${currentPlayer} wins!`;
+		gameOver = true;
+	}
+}
 
 function switchPlayers() {
-	// if (currentPlayer === 'X') {
-	// 	currentPlayer = 'O';
-	// } else {
-	// 	currentPlayer = 'X';
-	// }
 	currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
 }
