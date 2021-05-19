@@ -38,3 +38,7 @@ body {
 	color: white;
 	background-color: #999999;
 }
+
+.button:hover {
+	background-color: #777777;
+}
