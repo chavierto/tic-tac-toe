@@ -35,7 +35,10 @@ function boxClickHandler(event) {
 			bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
 			// checkWin();
 		}
-	} else bannerEl.innerText = "It's a tie!";
+	}
+	if (currentGameCounter === 9) {
+		bannerEl.innerText = "It's a tie!";
+	}
 }
 
 // function checkWin() {
