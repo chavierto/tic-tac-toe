@@ -48,7 +48,7 @@ function boxClickHandler(event) {
 			}
 		}
 	}
-	if (currentGameCounter === 9) {
+	if (currentGameCounter === 9 && !gameOver) {
 		bannerEl.innerText = "It's a tie!";
 	}
 }
