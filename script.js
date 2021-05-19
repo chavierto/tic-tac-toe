@@ -1,5 +1,6 @@
 //Define first player
 let currentPlayer = 'x';
+let currentGameCounter = 0;
 
 //Target gameboard
 const gameBoardEl = document.querySelector('.gameboard');
@@ -16,6 +17,8 @@ buttonEl.addEventListener('click', restart);
 
 //Define restart handler
 function restart() {
+	currentGameCounter = 0;
+	bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
 	const boxes = document.querySelectorAll('.box');
 	boxes.forEach((box) => {
 		box.innerText = '';
@@ -24,14 +27,15 @@ function restart() {
 
 //Define gameboard handler
 function boxClickHandler(event) {
-	if (event.target.className === 'box') {
+	if (event.target.className === 'box' && currentGameCounter < 9) {
 		if (event.target.innerText === '') {
 			event.target.innerText = currentPlayer;
 			switchPlayers();
+			currentGameCounter++;
 			bannerEl.innerText = `It's ${currentPlayer}'s turn!`;
-			checkWin();
+			// checkWin();
 		}
-	}
+	} else bannerEl.innerText = "It's a tie!";
 }
 
 // function checkWin() {
