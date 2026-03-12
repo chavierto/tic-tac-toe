@@ -23,10 +23,27 @@ body {
 	align-items: center;
 	justify-content: center;
 	height: calc(70vmin / 3);
-	transition: 100ms;
+	transition: background-color 100ms;
+	cursor: pointer;
 }
-.box:hover {
+.box:hover:not(.filled):not(.game-over) {
 	background-color: #dddddd;
+}
+.box.filled {
+	cursor: default;
+}
+.box.game-over {
+	cursor: default;
+}
+.box.winning-cell {
+	background-color: #dddddd;
+}
+
+.score {
+	font-family: 'Raleway';
+	font-size: 1.1em;
+	letter-spacing: 0.05em;
+	color: #555;
 }
 
 .button {
